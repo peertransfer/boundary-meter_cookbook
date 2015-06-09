@@ -50,7 +50,7 @@ when 'debian', 'ubuntu'
   end
 
   apt_repository 'boundary' do
-    uri boundary_data('repositories')['apt']['url']
+    uri boundary_data('repositories')['apt']['url'] % { distribution: node['platform_family'] }
     distribution node['lsb']['codename']
     components ['universe']
     key boundary_data('repositories')['apt']['key']
